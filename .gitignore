@@ -1,0 +1,7 @@
+__pycache__/
+views/__pycache__/
+views/bookmanager/__pycache__
+views/membermanager/__pycache__
+views/transactionmanager/__pycache__
+views/dashboardmanager/__pycache__
+.DS_Store

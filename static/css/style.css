@@ -1,0 +1,263 @@
+body{
+    margin: 0;
+    /* display:flex; */
+}
+.container{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background : url("/images/back.jpeg");
+    height:100vh;
+    width:100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*  Home Page */
+
+#searchBar{
+    padding: 1rem;
+    border: none;
+    font-size: 2rem;
+    width:18em;
+    border-radius: 1rem;
+}
+
+a{
+    font-size:1.5rem;
+    margin-top:1rem;
+    color:#fff;
+}
+
+/*  Admin Login Page */
+
+.login-container {
+    width: 360px;
+    margin:15rem auto;
+    display: flex;
+  }
+
+.login-form{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    max-width: 50rem;
+    padding: 3rem;
+  }
+
+.login-form input {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+.login-form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #fff;
+    width: 100%;
+    border: 0;
+    padding: 1rem;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0.5rem 0;
+  }
+
+/*  Base Sidebar */
+
+.sidebar {
+    height: 100%;
+    width: 13rem;
+    position: fixed;
+    z-index: 1;
+    background-color: #111;
+    overflow-x: hidden; 
+    padding-top: 1rem;
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .sidebar a {
+    padding:1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    /* display: inline-block; */
+  }
+  
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  .content {
+    margin-left: 160px;
+    /* background: #3cf; */
+    padding: 0px 10px;
+  }
+
+  /* Book Manager */
+
+.book-action-container,.member-action-container, .book-transactions-container{
+  display:flex;
+  flex-direction: row;
+  margin:1rem 10rem;
+  flex-wrap: nowrap;
+}
+
+h1{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding:1rem;
+}
+
+.book-action-container .input-group, .member-action-container .input-group{
+  width:50rem;
+  height:2rem;
+}
+
+#query{
+  width:50rem;
+}
+
+.book-action-container .btn-dark,.member-action-container .btn-dark{
+  width:10rem;
+  margin-left:1rem;
+  margin-top:0rem;
+}
+
+.book-details-container .book-not-found, .member-details-container .member-not-found{
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin:1rem auto;
+}
+
+.book-details, .member-details{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding:2rem 10rem;
+}
+
+.member-details > input {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Add Book Container */
+
+.add-book-container, .add-member-container{
+  width: 80rem;
+  margin:0rem auto;
+  display: flex;
+}
+
+.add-book-form, .add-member-form{
+  display:flex;
+  min-width:20rem;
+  margin:0rem auto;
+  flex-direction: column;
+}
+
+.add-book-form input, .add-member-form input{
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0.5rem 0;
+  padding: 0.9rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+/* Book Transaction */
+
+.transaction-action-container{
+  margin-left: 8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width:78%;
+}
+
+.book-issue-container, .book-return-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.book-issue-container h5, .book-return-container h5{
+  margin-top: 2rem;
+}
+
+.book-issue-container form, .book-return-container form{
+  margin-top: 2rem;
+  width:80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:2rem;
+}
+
+.book-issue-container form > *,.book-return-container form > *{
+  margin-top:2rem;
+  width:150%;
+}
+
+/* Dashboard */
+.popular-book-chart, .highest-buyer-chart{
+  
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:75%;
+  margin-left:10rem;
+  
+}
+.chart-header{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width:75%;
+}
+
+.chart-header a{
+  margin:-0.5rem 5rem;
+}
+
+/* Flash Message */
+.flash-message-container{
+  display:flex;
+  margin-left: 10rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flash-message{
+  margin-top:2rem;
+  background: #000 !important;
+  color:#fff !important;
+}
+
+button.close > span{
+  color:#fff;
+}
+

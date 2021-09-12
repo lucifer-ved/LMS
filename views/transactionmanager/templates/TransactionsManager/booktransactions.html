@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='flash-message-container'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show flash-message">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="transaction-container">
+        <div class="transaction-action-container">
+            <div class="book-issue-container">
+                <form method="post" action={{ url_for('transactionmanager_bp.issue_book') }} class="book-issue-form">
+                    <input id="memberEmail" name="memberEmail" type="text" placeholder="Member email id" required/>
+                    <input id="isbn" name="isbn" type="number" placeholder="ISBN No"  max="99999999999" required/>
+                    <button class="btn btn-dark" type="submit">Issue Book</button>
+                </form>
+            </div>
+
+            <div class="book-return-container">
+                <form method="post" action={{ url_for('transactionmanager_bp.return_book') }} class="book-return-form">
+                    <input id="memberEmail" name="memberEmail" type="text" placeholder="Member email id" required/>
+                    <input id="isbn" name="isbn" type="number" placeholder="ISBN No" max="99999999999" required/>
+                    <button class="btn btn-dark" type="submit">Return Book</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="book-transactions-container">
+            <div class="transactions-not-found">
+                {% if transactions|length == 0 %}
+                    <p>No transactions made yet</p>
+                {% else %}
+            </div>
+            <div class="transactions-details">
+                <table class="table table-striped">
+                    <thead class="text-center table-dark"> 
+                        <tr>
+                            <th scope="col" class="col-md-4">Book Title</th>
+                            <th scope="col" class="col-md-2">Issued By</th>
+                            <th scope="col" class="col-md-2">Issue Date</th>
+                            <th scope="col" class="col-md-2">Return Date</th>
+                            <th scope="col" class="col-md-2">Expected Return Date</th>
+                            <th scope="col" class="col-md-2">Outstanding Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                        <tr class="text-center">
+                            <td>{{transaction.book.title}}</td>
+                            <td>{{transaction.member.name}}</td>
+                            <td>{{transaction.issueDate}}</td>
+                            <td>{{transaction.returnDate}}</td>
+                            <td>{{transaction.expReturnDate}}</td>
+                            <td>{{transaction.outStandingBalance}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

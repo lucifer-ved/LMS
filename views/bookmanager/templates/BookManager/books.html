@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Manage Books</h1>
+    <!-- Action Control -->
+    <div class="book-action-container">
+        <div class="input-group rounded">
+            <form action="{{ url_for('bookmanager_bp.search_book') }}">
+                <input type="search" class="form-control rounded" placeholder="Search" name='query' id='query'/>
+            </form>
+        </div>
+
+        <a href="{{ url_for('bookmanager_bp.add_book') }}" type="button" class="btn btn-dark btn-md">Add Book</a>
+        
+        <!-- <a href="{{ url_for('bookmanager_bp.booklist') }}" type="button" class="btn btn-dark btn-md">Populate Books</a> -->
+
+    </div>
+
+    <!-- Book Details Table -->
+    <div class="book-details-container">
+        <div class="book-not-found">
+            {% if books|length == 0 %}
+                <p>No books found. please add book using the 'Add Book' option provided</p>
+            {% else %}
+        </div>
+        <div class="book-details">
+            <table class="table table-striped">
+                <thead class="text-center table-dark"> 
+                    <tr>
+                        <th scope="col" class="col-md-4">Name</th>
+                        <th scope="col" class="col-md-4">Author</th>
+                        <th scope="col" class="col-md-4">Publisher</th>
+                        <th scope="col" class="col-md-4">Price</th>
+                        <th scope="col" class="col-md-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr class="text-center">
+                        <td>{{book.title}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.publisher}}</td>
+                        <td>{{book.price}}</td>
+                        <!-- <td>{{book.pages}}</td> -->
+                        <td>
+                            &nbsp;
+                            <a href="{{ url_for('bookmanager_bp.update_book', id=book.id) }}"><img src="/icons/pencil-fill.svg" alt="edit" ...></a>
+                            <!-- <form method="POST" action="{{ url_for('bookmanager_bp.update_book', id=book.id) }}" style="display: inline">
+                                <input type="submit" class="btn btn-dark btn-sm" value="Edit">
+                            </form> -->
+                            &nbsp;
+                            <a href="{{ url_for('bookmanager_bp.delete_book', id=book.id) }}"><img src="/icons/trash.svg" alt="delete" ...></a>
+                            <!-- <form method="POST" action="{{ url_for('bookmanager_bp.delete_book', id=book.id) }}" style="display: inline">
+                                <input type="submit" class="btn btn-dark btn-sm" value="Delete">
+                                
+                            </form> -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+{% endblock %}

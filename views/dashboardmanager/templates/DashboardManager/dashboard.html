@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class='highest-buyer-chart'>
+        <div class='chart-header'>
+            <h4>Popular Book Chart</h4>
+            <a href="{{ url_for('dashboardmanager_bp.download_report', type='popularBook') }}"><img src="/icons/download.svg" alt="download"></a>
+        </div>
+        <canvas id='popularBookChart' width="700" height="300"></canvas>
+    </div>
+
+    <div class='popular-book-chart'>
+        <div class='chart-header'>
+            <h4>Highest Buyer Chart</h4>
+            <a href="{{ url_for('dashboardmanager_bp.download_report', type='highestPayingCustomer') }}"><img src="/icons/download.svg" alt="download"></a>
+        </div>
+        <canvas id="highestBuyerChart" width="700" height="300"></canvas>
+    </div>
+
+    {% block javascript %}
+        <script>
+            let memberValues = {{ memberValues}};
+            let memberLabel = {{ memberLabel }};
+
+            let bookValues = {{ bookValues}};
+            let bookLabel = {{ bookLabel }};
+
+            let highestBuyerChartContext = document.getElementById('highestBuyerChart').getContext('2d');
+            let hbc = new Chart(highestBuyerChartContext, {
+                type: 'bar',
+                data: {
+                    labels: memberLabel,
+                    datasets: [{
+                        label: 'Member ID',
+                        data: memberValues
+                    }]
+                },
+                options: {
+                    responsive : false
+                }
+            });
+
+            let popularBookChartContext = document.getElementById('popularBookChart').getContext('2d');
+            let pbc = new Chart(popularBookChartContext, {
+                type: 'bar',
+                data: {
+                    labels: bookLabel,
+                    datasets: [{
+                        label: 'Buyer Count',
+                        data: bookValues
+                    }]
+                },
+                options: {
+                    responsive : false
+                }
+            });
+
+        </script>
+    {% endblock %}
+{% endblock %}

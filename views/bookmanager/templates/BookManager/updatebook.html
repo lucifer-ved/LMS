@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Add Book{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h1> Update Book Details</h1>
+<div class="add-book-container">
+<form method="post" action="{{ url_for('bookmanager_bp.update_book',id=book.id) }}" class="add-book-form">
+    <input type="text" placeholder="Title" id="title" name="title" value='{{ book.title}}' required/>
+    <input type="text" placeholder="Author" id="author" name="author" value='{{ book.author}}' required/>
+    <input type="number" placeholder="Price" id="price" name="price" min="1" max="1000" value='{{ book.price}}' required>
+    <input type="number" placeholder="Pages" id="pages" name="pages" min="1" max="800" value='{{ book.pages}}' required>
+    <input type="text" placeholder="Publisher" id="publisher" name="publisher" value='{{ book.publisher}}' />
+    <input type="number" placeholder="ISBN" id="isbn" name="isbn" min="10000000" max="99999999999" value='{{ book.isbn}}' required>
+    <!-- <input type="submit" class="btn btn-dark" value="Update"> -->
+    <button class="btn btn-dark" type="submit">Update</button>
+</form>
+</div>
+{% endblock %}
