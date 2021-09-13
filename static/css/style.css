@@ -193,7 +193,7 @@ h1{
 .update-book-form{
   display:flex;
   min-width:20rem;
-  margin:4rem auto;
+  margin:0rem auto;
   flex-direction: column;
 }
 
