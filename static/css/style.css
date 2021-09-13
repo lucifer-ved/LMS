@@ -15,12 +15,6 @@ body{
     background-size: cover;
 }
 
-/* Sidebar */
-.selected{
-  background: #fff;
-  color : #000 !important;
-}
-
 /*  Home Page */
 
 #searchBar{
@@ -31,7 +25,7 @@ body{
     border-radius: 1rem;
 }
 
-a{
+.add-book-btn{
     font-size:1.5rem;
     margin-top:1rem;
     color:#fff;
@@ -90,6 +84,12 @@ a{
     display:flex;
     flex-direction: column;
   }
+
+  .sidebar ul{
+    list-style-type: none;
+    margin-top: 1.5rem;
+    padding: 0;
+  }
   
   .sidebar a {
     padding:1rem;
@@ -99,16 +99,19 @@ a{
     justify-content: center;
     align-items: center;
     display:flex;
-    /* display: inline-block; */
   }
-  
+
+  .active{
+    background: #fff;
+    color : #000 !important;
+  }
+
   .sidebar a:hover {
     color: #f1f1f1;
   }
   
   .content {
     margin-left: 160px;
-    /* background: #3cf; */
     padding: 0px 10px;
   }
 
@@ -174,7 +177,7 @@ h1{
 
 /* Add Book Container */
 
-.add-book-container, .add-member-container{
+.add-book-container, .add-member-container, .update-book-container{
   width: 80rem;
   margin:0rem auto;
   display: flex;
@@ -187,7 +190,14 @@ h1{
   flex-direction: column;
 }
 
-.add-book-form input, .add-member-form input{
+.update-book-form{
+  display:flex;
+  min-width:20rem;
+  margin:4rem auto;
+  flex-direction: column;
+}
+
+.add-book-form input, .add-member-form input,.update-book-form input{
   outline: 0;
   background: #f2f2f2;
   width: 100%;

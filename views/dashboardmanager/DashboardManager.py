@@ -3,14 +3,14 @@ from flask import send_file
 dashboardmanager_bp = Blueprint('dashboardmanager_bp',__name__,template_folder="templates/DashboardManager")
 from models import MemberTransactions
 from sqlalchemy import desc,text
-import xlwt,io
+import xlwt,io,json
 
 POPULAR_BOOK = 'popularBook'
 HIGHEST_PAYING_CUSTOMER = 'highestPayingCustomer'
 
 @dashboardmanager_bp.route('/')
 def reports():
-    member_label,member_values = get_highest_paying_customer_info()
+    member_label,member_values = get_highest_paying_customer_details()
     book_label,book_values = get_popular_book_details()
     return render_template("dashboard.html",memberLabel=member_label,memberValues=member_values,bookLabel=book_label,bookValues=book_values)
 
@@ -19,48 +19,39 @@ def download_report(type):
     report_obj = get_popular_book_obj() if type == POPULAR_BOOK else get_highest_paying_customer_obj()
     return export_to_excel(report_obj)
 
-def get_highest_paying_customer_info():
-    transactions = MemberTransactions.query.order_by(desc(MemberTransactions.outstanding_balance)).all()
-    member_label = [t.member_id for t in transactions]
-    member_values = [t.outstanding_balance for t in transactions]
-    #not working in case of string. why !?
-    # memberLabel = ['Ved','Lucifer']
-    member_label = list(set(member_label))
-    return member_label, member_values
-
-def get_popular_book_details():
-    book_isbn_no = []
-    member_count = []
-    sql = text('SELECT book_id,count(member_id) as count from membertransactions group by book_id')
-    result = db.engine.execute(sql)
-    for row in result:
-        book_isbn_no.append(row[0])
-        member_count.append(row[1])
-    return book_isbn_no,member_count
-
 def get_highest_paying_customer_obj():
     report_obj = {}
     report_obj['report_name'] = 'Popular Book Report'
     report_obj['headers'] = ['Name','Amount']
-    transactions = MemberTransactions.query.order_by(desc(MemberTransactions.outstanding_balance)).all()
-    member_name = [t.member.name for t in transactions]
-    member_balance = [t.outstanding_balance for t in transactions]
-    report_obj['values'] = list(zip(list(set(member_name)), member_balance))
+    member_name, member_balance = get_highest_paying_customer_details()
+    report_obj['values'] = list(zip(member_name, member_balance))
     return report_obj
 
 def get_popular_book_obj():
     report_obj = {}
     report_obj['report_name'] = 'Highest Paying Buyer Report'
     report_obj['headers'] = ['Name','Buyers']
-    sql = text('SELECT title,count(member_id) as count from membertransactions mt inner join books b on mt.book_id = b.isbn group by book_id')
+    book_name,total_buyer = get_popular_book_details()
+    report_obj['values'] = list(zip(book_name, total_buyer))
+    return report_obj
+
+def get_popular_book_details():
+    sql = text('SELECT title,count(member_id) as count from membertransactions mt inner join books b on mt.book_id = b.isbn where mt.transaction_type="I" group by book_id order by count desc;')
     result = db.engine.execute(sql)
     book_name = []
     total_buyer = []
     for row in result:
-        book_name.append(row[0])
+        if row[0] not in book_name:book_name.append(row[0])
         total_buyer.append(row[1])
-    report_obj['values'] = list(zip(book_name, total_buyer))
-    return report_obj
+    return book_name,total_buyer
+
+def get_highest_paying_customer_details():
+    transactions = MemberTransactions.query.order_by(desc(MemberTransactions.outstanding_balance)).all()
+    member_name = {t.member.name for t in transactions}
+    member_balance = [t.outstanding_balance for t in transactions]
+    return list(member_name),member_balance
+
+
 
 def export_to_excel(report_obj):
     try:

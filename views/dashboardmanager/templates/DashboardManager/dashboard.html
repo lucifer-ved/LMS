@@ -18,12 +18,12 @@
     </div>
 
     {% block javascript %}
-        <script>
-            let memberValues = {{ memberValues}};
-            let memberLabel = {{ memberLabel }};
+        <script type='text/javascript'>
 
+            let memberValues = {{ memberValues}};
+            let memberLabel = {{ memberLabel|safe}};
             let bookValues = {{ bookValues}};
-            let bookLabel = {{ bookLabel }};
+            let bookLabel = {{ bookLabel|safe }};
 
             let highestBuyerChartContext = document.getElementById('highestBuyerChart').getContext('2d');
             let hbc = new Chart(highestBuyerChartContext, {

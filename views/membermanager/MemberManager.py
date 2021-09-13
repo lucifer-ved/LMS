@@ -8,6 +8,7 @@ def member_list():
     return render_template("members.html",members=members)
 
 @membermanager_bp.route('/add-member',methods=('GET','POST'))
+@validate_member
 def add_member():
     if request.form:
         name = request.form.get('name')

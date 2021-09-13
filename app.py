@@ -12,7 +12,7 @@ def create_app():
     #setup from DB
     database.init_app(app)
     #for flash message
-    app.secret_key = b'_5#y2RB"F4Q8z\n\xec]/'
+    app.secret_key = b'_5#y1RB"F4W8h\c\vpr]/'
     @app.route('/',defaults={'path1':''})
     def index():
         return render_template('index.html')

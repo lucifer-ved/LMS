@@ -9,7 +9,7 @@ def book_list():
     books = Book.query.all()
     return render_template("books.html",books=books)
 
-@bookmanager_bp.route('/add-book',methods=('GET','POST'))
+@bookmanager_bp.route('/add-book',methods=['POST'])
 def add_book():
     print(request.form)
     if request.form:
