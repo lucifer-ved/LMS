@@ -19,7 +19,7 @@ flask run
 # Screenshots
 
 1) Report Dashboard
-![Dashboard](https://github.com/lucifer-ved/LMS/blob/master/screenshots/Dashboard.png)
+![Dashboard](https://github.com/lucifer-ved/LMS/blob/master/screenshots/dashboard.png)
 
 2) Add Book
 !["Add Book"](https://github.com/lucifer-ved/LMS/blob/master/screenshots/add_book.png)
@@ -28,7 +28,7 @@ flask run
 !["Manage Books"](https://github.com/lucifer-ved/LMS/blob/master/screenshots/manage_books.png)
 
 4) Update Book
-!["Update Book"](https://github.com/lucifer-ved/LMS/blob/master/screenshots/update_books.png)
+!["Update Book"](https://github.com/lucifer-ved/LMS/blob/master/screenshots/update_book.png)
 
 5) Add Member
 !["Add Member"](https://github.com/lucifer-ved/LMS/blob/master/screenshots/add_member.png)
