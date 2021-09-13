@@ -19,9 +19,9 @@ def create_app():
     app.add_url_rule('/',endpoint='index')
 
     @app.route('/login')
-    def adminLogin():
+    def admin_login():
         return render_template('login.html')
-    app.add_url_rule('/login',endpoint='adminLogin')
+    app.add_url_rule('/login',endpoint='admin_login')
 
     #register blueprint
     app.register_blueprint(bookmanager_bp,url_prefix='/book')

@@ -29,15 +29,15 @@ class MemberTransactions(db.Model):
     __tablename__ = "membertransactions"
 
     id = db.Column(db.Integer, primary_key=True)
-    bookId = db.Column(db.Integer,db.ForeignKey("books.isbn"), nullable=False)
-    memberId = db.Column(db.Integer,db.ForeignKey("member.id"), nullable=False)
+    book_id = db.Column(db.Integer,db.ForeignKey("books.isbn"), nullable=False)
+    member_id = db.Column(db.Integer,db.ForeignKey("member.id"), nullable=False)
     book = db.relationship("Book", backref="book")
     member = db.relationship("Member", backref="member")
-    issueDate = db.Column(db.Date, nullable=False)
-    returnDate = db.Column(db.Date)
-    expReturnDate  = db.Column(db.Date, nullable=False)
-    outStandingBalance = db.Column(db.Integer,nullable=False)
-    transactiontype = db.Column(db.Enum(TransactionType))
+    issue_date = db.Column(db.Date, nullable=False)
+    return_date = db.Column(db.Date)
+    expected_return_date  = db.Column(db.Date, nullable=False)
+    outstanding_balance = db.Column(db.Integer,nullable=False)
+    transaction_type = db.Column(db.Enum(TransactionType))
 
 
 

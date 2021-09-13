@@ -20,7 +20,7 @@
         <div class="transaction-action-container">
             <div class="book-issue-container">
                 <form method="post" action={{ url_for('transactionmanager_bp.issue_book') }} class="book-issue-form">
-                    <input id="memberEmail" name="memberEmail" type="text" placeholder="Member email id" required/>
+                    <input id="member_email" name="member_email" type="text" placeholder="Member email id" required/>
                     <input id="isbn" name="isbn" type="number" placeholder="ISBN No"  max="99999999999" required/>
                     <button class="btn btn-dark" type="submit">Issue Book</button>
                 </form>
@@ -28,7 +28,7 @@
 
             <div class="book-return-container">
                 <form method="post" action={{ url_for('transactionmanager_bp.return_book') }} class="book-return-form">
-                    <input id="memberEmail" name="memberEmail" type="text" placeholder="Member email id" required/>
+                    <input id="member_email" name="member_email" type="text" placeholder="Member email id" required/>
                     <input id="isbn" name="isbn" type="number" placeholder="ISBN No" max="99999999999" required/>
                     <button class="btn btn-dark" type="submit">Return Book</button>
                 </form>
@@ -58,10 +58,10 @@
                         <tr class="text-center">
                             <td>{{transaction.book.title}}</td>
                             <td>{{transaction.member.name}}</td>
-                            <td>{{transaction.issueDate}}</td>
-                            <td>{{transaction.returnDate}}</td>
-                            <td>{{transaction.expReturnDate}}</td>
-                            <td>{{transaction.outStandingBalance}}</td>
+                            <td>{{transaction.issue_date}}</td>
+                            <td>{{transaction.return_date}}</td>
+                            <td>{{transaction.expected_return_date}}</td>
+                            <td>{{transaction.outstanding_balance}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

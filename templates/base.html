@@ -19,14 +19,22 @@
 
 <div>
     <div class="sidebar">
+        <a href="{{ url_for('bookmanager_bp.book_list') }}">Manage Books</a>
+        <a href="{{ url_for('membermanager_bp.member_list') }}">Manage Members</a>
+        <a href="{{ url_for('transactionmanager_bp.transactions_list') }}">Manage Transactions</a>
         <a href="{{ url_for('dashboardmanager_bp.reports') }}">Dashboard</a>
-        <a href="{{ url_for('bookmanager_bp.booklist') }}">Manage Books</a>
-        <a href="{{ url_for('membermanager_bp.memberlist') }}">Manage Members</a>
-        <a href="{{ url_for('transactionmanager_bp.transactionslist') }}">Manage Transactions</a>
       </div>
       
       <div class="content">
         {% block content %}
         {% endblock %}
+        {% block javascript %}
+          <script type=text/javascript>
+              $("a").on("click", function() {
+                $(this).addClass("selected");
+            });
+          </script>
+        {% endblock %}
       </div>
 </div>
+

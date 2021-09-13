@@ -4,8 +4,6 @@
 {% block content %}
 <h1> Add Books</h1>
 <div class="add-book-container">
-    <!-- <h1> Add Book</h1> -->
-    <!-- <form method="post" action="{{ url_for('bookmanager_bp.add_book') }}" class="add-book-form"></form> -->
     <form method="post" action="{{ url_for('bookmanager_bp.add_book') }}" class="add-book-form">
         <input type="text" placeholder="Title" id="title" name="title" required/>
         <input type="text" placeholder="Author" id="author" name="author" required/>
@@ -13,17 +11,13 @@
         <input type="number" placeholder="Pages" id="pages" name="pages" min="1" max="800" required>
         <input type="text" placeholder="Publisher" id="published" name="published" />
         <input type="number" placeholder="ISBN" id="isbn" name="isbn" min="10000000" max="99999999999" required>
-        <!-- <input type="submit" class="btn btn-primary" value="Add"> -->
         <button class="btn btn-dark" type="submit">Add</button>
     </form>
 
     'OR'
 
-    <!-- <h1> Populate Random Books</h1> -->
-    <!-- <form method="post" action="{{ url_for('bookmanager_bp.add_book') }}" class="add-book-form"></form> -->
     <form method="post" action="{{ url_for('bookmanager_bp.populate_books') }}" class="add-book-form">
         <input type="number" placeholder="Enter No Of Books" id="noofbooks" name="noofbooks" min="1" max="20" required>
-        <!-- <input type="submit" class="btn btn-primary" value="Populate"> -->
         <button class="btn btn-dark" type="submit">Populate</button>
     </form>
 

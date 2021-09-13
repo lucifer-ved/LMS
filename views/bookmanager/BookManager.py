@@ -5,11 +5,11 @@ from models import Book
 from api import *
 
 @bookmanager_bp.route('/')
-def booklist():
+def book_list():
     books = Book.query.all()
     return render_template("books.html",books=books)
 
-@bookmanager_bp.route('/addb',methods=('GET','POST'))
+@bookmanager_bp.route('/add-book',methods=('GET','POST'))
 def add_book():
     print(request.form)
     if request.form:
@@ -21,10 +21,10 @@ def add_book():
         isbn = request.form.get('isbn')
         book = Book(title=title,author=author,publisher=publisher,price=price,pages=pages,isbn=isbn)
         commit_to_db(book,'add')
-        return redirect(url_for('bookmanager_bp.booklist'))
+        return redirect(url_for('bookmanager_bp.book_list'))
     return render_template("addbook.html")
 
-@bookmanager_bp.route('/populatedb',methods=('GET','POST'))
+@bookmanager_bp.route('/populate-book',methods=('GET','POST'))
 def populate_books():
     if request.form:
         no_of_books = request.form.get('noofbooks',type=int)
@@ -39,18 +39,17 @@ def populate_books():
                         isbn=book_detail['isbn'])
             book_records.append(book)
         commit_to_db(book_records,'bulkadd')
-        return redirect(url_for('bookmanager_bp.booklist'))
+        return redirect(url_for('bookmanager_bp.book_list'))
     return render_template("addbook.html")
 
-@bookmanager_bp.route('/deleteb/<id>',methods=('GET','POST'))
+@bookmanager_bp.route('/delete-book/<id>',methods=('GET','POST'))
 def delete_book(id):
     if id:
         book = Book.query.filter_by(id=id)
         commit_to_db(book,'delete')
-    return redirect(url_for('bookmanager_bp.booklist'))
+    return redirect(url_for('bookmanager_bp.book_list'))
     
-
-@bookmanager_bp.route('/<id>/updateb',methods=('GET','POST'))
+@bookmanager_bp.route('/update-book/<id>',methods=('GET','POST'))
 def update_book(id):
     book = Book.query.get(id)
     if id and not request.form:
@@ -63,9 +62,9 @@ def update_book(id):
         book.pages = request.form.get('pages')
         book.isbn = request.form.get('isbn')
         db.session.commit()
-    return redirect(url_for('bookmanager_bp.booklist'))
+    return redirect(url_for('bookmanager_bp.book_list'))
 
-@bookmanager_bp.route('/search',methods=['GET'])
+@bookmanager_bp.route('/search-book',methods=['GET'])
 def search_book():
     books = []
     if request.args:
@@ -75,5 +74,5 @@ def search_book():
     if len(books)>0:
         return render_template("books.html",books=books)
     else:
-        return redirect(url_for('bookmanager_bp.booklist'))
+        return redirect(url_for('bookmanager_bp.book_list'))
 

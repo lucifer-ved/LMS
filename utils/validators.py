@@ -7,19 +7,19 @@ def validate_transaction_request(f):
     def decorated_function(*args, **kws):
         if request.form:
             isbn = request.form.get("isbn")
-            memberEmail = request.form.get("memberEmail")
+            member_email = request.form.get("member_email")
             if isbn :
-                bookDetails = Book.query.filter_by(isbn=isbn)
-                if bookDetails.count() == 0: 
+                book_details = Book.query.filter_by(isbn=isbn).first()
+                if not book_details: 
                     err = 'There is no such book with ISBN No : {} Please provide valid ISBN No'.format(isbn)
                     flash(err)
-                    return redirect(url_for('transactionmanager_bp.transactionslist'))
+                    return redirect(url_for('transactionmanager_bp.transactions_list'))
                     
-            if memberEmail:
-                memberDetails = Member.query.filter_by(email=memberEmail)
-                if memberDetails.count() == 0:
-                    err = 'Member with email : {} does not exist'.format(memberEmail)
+            if member_email:
+                memberDetails = Member.query.filter_by(email=member_email).first()
+                if not memberDetails:
+                    err = 'Member with email : {} does not exist'.format(member_email)
                     flash(err)
-                    return redirect(url_for('transactionmanager_bp.transactionslist'))
+                    return redirect(url_for('transactionmanager_bp.transactions_list'))
         return f(*args, **kws)
     return decorated_function

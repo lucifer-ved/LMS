@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Manage Books</h1>
     <!-- Action Control -->
     <div class="book-action-container">
-        <div class="input-group rounded">
-            <form action="{{ url_for('bookmanager_bp.search_book') }}">
-                <input type="search" class="form-control rounded" placeholder="Search" name='query' id='query'/>
-            </form>
-        </div>
+        <div class="book-action-group">
+            <div class="input-group rounded">
+                <form action="{{ url_for('bookmanager_bp.search_book') }}">
+                    <input type="search" class="form-control rounded" placeholder="Search" name='query' id='query'/>
+                </form>
+            </div>
 
-        <a href="{{ url_for('bookmanager_bp.add_book') }}" type="button" class="btn btn-dark btn-md">Add Book</a>
-        
-        <!-- <a href="{{ url_for('bookmanager_bp.booklist') }}" type="button" class="btn btn-dark btn-md">Populate Books</a> -->
+            <a href="{{ url_for('bookmanager_bp.add_book') }}" type="button" class="btn btn-dark btn-md">Add Book</a>
+        </div>
 
     </div>
 
@@ -44,16 +43,9 @@
                         <!-- <td>{{book.pages}}</td> -->
                         <td>
                             &nbsp;
-                            <a href="{{ url_for('bookmanager_bp.update_book', id=book.id) }}"><img src="/icons/pencil-fill.svg" alt="edit" ...></a>
-                            <!-- <form method="POST" action="{{ url_for('bookmanager_bp.update_book', id=book.id) }}" style="display: inline">
-                                <input type="submit" class="btn btn-dark btn-sm" value="Edit">
-                            </form> -->
+                            <a href="{{ url_for('bookmanager_bp.update_book', id=book.id) }}"><img src="/icons/pencil-fill.svg" alt="edit"></a>
                             &nbsp;
-                            <a href="{{ url_for('bookmanager_bp.delete_book', id=book.id) }}"><img src="/icons/trash.svg" alt="delete" ...></a>
-                            <!-- <form method="POST" action="{{ url_for('bookmanager_bp.delete_book', id=book.id) }}" style="display: inline">
-                                <input type="submit" class="btn btn-dark btn-sm" value="Delete">
-                                
-                            </form> -->
+                            <a href="{{ url_for('bookmanager_bp.delete_book', id=book.id) }}"><img src="/icons/trash.svg" alt="delete"></a>
                         </td>
                     </tr>
                     {% endfor %}

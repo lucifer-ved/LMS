@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% block content %}
     <div class="login-container">
-        <form action={{ url_for('bookmanager_bp.booklist') }} class="login-form">
+        <form action={{ url_for('bookmanager_bp.book_list') }} class="login-form">
             <input type="text" placeholder="username" value='admin'readonly/>
             <input type="password" placeholder="password" value='admin'readonly/>
             <button class="btn btn-dark" type="submit">Login</button>
